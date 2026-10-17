@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Table Order – Hotel Annapurna</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+<!-- 1. SCAN -->
+<section class="screen on" id="s-scan">
+  <div class="scan-wrap">
+    <div class="finder" id="finder"><div class="qr"></div><div class="beam"></div></div>
+    <h1>Order from your table</h1>
+    <p id="scanMsg">Point your camera at the QR code on your table.</p>
+    <button class="btn" id="scanBtn">Scan table QR</button>
+    <p class="muted" style="margin-top:14px">Demo: tapping the button simulates a scan of Table 7.</p>
+  </div>
+</section>
+
+<!-- 2. MENU -->
+<section class="screen" id="s-menu">
+  <div class="top"><div><h1 id="hotelName"></h1><small>Fresh food, served at your table</small></div><span class="table-chip" id="tableChip"></span></div>
+  <input class="search" id="search" type="search" placeholder="Search dishes" aria-label="Search dishes">
+  <div class="chips" id="chips"></div>
+  <div id="list"></div>
+  <div class="bar" id="cartWrap" hidden><button class="cartbar" id="openCart"><span id="cartCount"></span><span id="cartTotal"></span></button></div>
+</section>
+
+<!-- 3. CART -->
+<section class="screen" id="s-cart">
+  <button class="back" data-go="menu">‹ Back to menu</button>
+  <h2>Your order</h2>
+  <div class="card" id="cartItems"></div>
+  <textarea id="note" placeholder="Cooking notes, e.g. less spicy, no onion"></textarea>
+  <div class="card" style="margin-top:14px" id="bill"></div>
+  <div class="bar"><button class="btn" id="placeBtn">Place order</button></div>
+</section>
+
+<!-- 4. STATUS -->
+<section class="screen" id="s-status">
+  <h2 id="statusTitle">Order placed</h2>
+  <p class="muted" id="orderMeta" style="margin-top:-8px"></p>
+  <div class="card"><ul class="track" id="track"></ul></div>
+  <div class="card" style="margin-top:14px" id="summary"></div>
+  <div class="bar"><button class="btn" id="payBtn" disabled>Pay after your food is served</button></div>
+</section>
+
+<!-- 5. PAY -->
+<section class="screen" id="s-pay">
+  <button class="back" data-go="status">‹ Back to order</button>
+  <h2>Pay with UPI</h2>
+  <div class="card amount"><span class="muted">Amount to pay</span><strong id="payAmt"></strong><span class="muted" id="payTo"></span></div>
+  <p class="muted" style="margin:16px 0 0">Choose an app. Your amount and the hotel's UPI ID are filled in for you.</p>
+  <div class="apps">
+    <button class="app-btn" data-app="gpay"><i>🟦</i>Google Pay</button>
+    <button class="app-btn" data-app="phonepe"><i>🟪</i>PhonePe</button>
+    <button class="app-btn" data-app="paytm"><i>🟩</i>Paytm</button>
+  </div>
+  <button class="btn alt" data-app="any">Other UPI apps</button>
+  <div class="card upi-id" style="margin-top:14px"><div><span class="muted">Hotel UPI ID</span><br><code id="upiId"></code></div><button class="copy" id="copyUpi">Copy</button></div>
+  <div class="bar"><button class="btn" id="paidBtn">I have paid</button></div>
+</section>
+
+<!-- 6. DONE -->
+<section class="screen" id="s-done">
+  <div class="ok"><div class="tick">✓</div><h2>Payment received</h2><p class="muted" id="doneMsg"></p></div>
+  <div class="card" style="margin-top:20px" id="receipt"></div>
+  <div class="bar"><button class="btn alt" id="newBtn">Order something else</button></div>
+</section>
+
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
